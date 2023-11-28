@@ -1,2 +1,3 @@
 # To Do:
-- [ ] Attend meeting
+- [ x ] Attend meeting
+- [ ] Create basic Space Invaders level

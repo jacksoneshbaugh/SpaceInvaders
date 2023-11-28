@@ -1,2 +1,2 @@
 # To Do:
-[ ] Attend meeting
+- [ ] Attend meeting

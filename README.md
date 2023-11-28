@@ -1,2 +1,4 @@
-# SpaceInvaders
- Very fun final project CS 104
+# Space Invaders (Processing)
+## This clone created by Jackson Eshbaugh and Callum Linders
+
+"Very fun final project CS 104"

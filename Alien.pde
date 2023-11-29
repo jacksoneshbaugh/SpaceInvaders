@@ -10,9 +10,11 @@ public class Alien extends GameObject {
     private int frameCounter = 0;
     
 
-    public Alien(int x, int y, PImage img, int movementSpeed, int numMovesBeforeVerticalMovement) {
+    public Alien(int x, int y, int xWidth, int yWidth, PImage img, int movementSpeed, int numMovesBeforeVerticalMovement) {
         this.x = x;
         this.y = y;
+        this.xWidth = xWidth;
+        this.yWidth = yWidth;
         this.img = img;
         this.movementSpeed = movementSpeed;
         this.numMovesBeforeVerticalMovement = numMovesBeforeVerticalMovement;

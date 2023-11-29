@@ -27,3 +27,23 @@ void draw() {
 
 
 }
+
+void keyPressed() {
+    // pass the key press to the active level
+    switch(keyCode) {
+        case LEFT:
+            l.onKeyPressed('l');
+            break;
+        case RIGHT:
+            l.onKeyPressed('r');
+            break;
+        default:
+            switch(key) {
+                case ' ':
+                    l.onKeyPressed(' ');
+                    break;
+                default:
+                    break;
+            }
+    }
+}

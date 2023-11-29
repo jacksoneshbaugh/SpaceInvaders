@@ -72,4 +72,22 @@ public class Level extends GameObject {
         }
     }
 
+    /**
+    * key can be 'l', 'r' for left and right arrows respectively
+    * or ' ' for spacebar
+    */
+    public void onKeyPressed(char key) {
+        switch(key) {
+            case 'l':
+                player.moveLeft();
+                break;
+            case 'r':
+                player.moveRight();
+                break;
+            case ' ':
+                player.fire();
+                break;
+        }
+    }
+
 }

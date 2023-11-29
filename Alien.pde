@@ -43,10 +43,10 @@ public class Alien extends GameObject {
         }
     }
 
-    // movement should occur every 20 frames.
+    // movement should occur every 40 frames.
     public void update() {
         frameCounter++;
-        if (frameCounter == 20) {
+        if (frameCounter == 40) {
             move();
             frameCounter = 0;
         }

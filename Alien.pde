@@ -1,13 +1,14 @@
 public class Alien extends GameObject {
 
-    private int x, y;
-    private int xWidth, yWidth;
+    public int x, y;
+    public int xWidth, yWidth;
     private PImage img;
     private char movementDirection = 'R';
     private int movementSpeed = 1;
     private final int numMovesBeforeVerticalMovement;
     private int movementTracker;
     private int frameCounter = 0;
+    private boolean isDead = false;
     
 
     public Alien(int x, int y, int xWidth, int yWidth, PImage img, int movementSpeed, int numMovesBeforeVerticalMovement) {
@@ -53,7 +54,17 @@ public class Alien extends GameObject {
     }
 
     public void render() {
-        image(img, x, y, xWidth, yWidth);
+        if (isDead == false) {
+            image(img, x, y, xWidth, yWidth);
+        }
+    }
+
+    public boolean getIsDead() {
+        return isDead;
+    }
+
+    public void setIsDead(boolean arg) {
+        isDead = arg;
     }
 
 }

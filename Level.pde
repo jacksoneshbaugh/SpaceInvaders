@@ -56,20 +56,33 @@ public class Level extends GameObject {
             return;
         }
         player.update();
-        if(player.lasers.isEmpty() == false) {
+        if (player.lasers.isEmpty() == false) {
             for (PlayerLaser laser : player.lasers) {
                 laser.update();
             }
         }
         for (Alien[] alienArr : aliens) {
-            for(Alien alien : alienArr) {
+            for (Alien alien : alienArr) {
                 alien.update();
+                //Collision code (Broken currently)
+                if (player.lasers.isEmpty() == false) {
+                    for (PlayerLaser laser : player.lasers) {
+                        if (laser.x >= alien.x && laser.x <= alien.xWidth && laser.y >= alien.y && laser.y <= alien.yWidth && alien.getIsDead() == false) {
+                            alien.setIsDead(true);
+                        }
+                    }
+                }
             }
         }
     }
     
     public void render() {
         player.render();
+        if(player.lasers.isEmpty() == false) {
+            for (PlayerLaser laser : player.lasers) {
+                laser.render();
+            }
+        }
         for (Alien[] alienArr : aliens) {
             for(Alien alien : alienArr) {
                 alien.render();
@@ -81,6 +94,8 @@ public class Level extends GameObject {
     * key can be 'l', 'r' for left and right arrows respectively
     * or ' ' for spacebar
     */
+
+    //While moving and fireing at the same time, you have to press the space bar again, you cant hold it. We need to rethink our rollover.
     public void onKeyPressed(char key) {
         switch(key) {
             case 'l':

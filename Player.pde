@@ -4,8 +4,8 @@ public class Player extends GameObject {
     private PImage img;
     public int fireDelay = 10;
     public int fireTime;
-    public int laserSpeed = 3;
-    ArrayList<PlayerLaser> lasers = new ArrayList<PlayerLaser>();
+    public int laserSpeed = 10;
+    public ArrayList<PlayerLaser> lasers = new ArrayList<PlayerLaser>();
 
     public Player() {
 
@@ -16,9 +16,6 @@ public class Player extends GameObject {
     }
 
     public void update() {
-        if (keyPressed){
-            
-        }
     }
 
     public void moveLeft() { 
@@ -33,10 +30,10 @@ public class Player extends GameObject {
         }
     }
 
-    // TODO : Fire laser
+    // Creates laser at player position
     public void fire() {
         if (fireTime <= millis()){
-            lasers.add(new PlayerLaser(x, y, laserSpeed, PI/2));
+            lasers.add(new PlayerLaser(x+38, y, laserSpeed, PI/2));
             fireTime = millis() + 100*fireDelay;
         }
     }
@@ -46,7 +43,6 @@ public class Player extends GameObject {
     }
 
     public void render() {
-
         image(img, x, y, 80, 40);
 
     }

@@ -56,6 +56,11 @@ public class Level extends GameObject {
             return;
         }
         player.update();
+        if(player.lasers.isEmpty() == false) {
+            for (PlayerLaser laser : player.lasers) {
+                laser.update();
+            }
+        }
         for (Alien[] alienArr : aliens) {
             for(Alien alien : alienArr) {
                 alien.update();

@@ -1,7 +1,11 @@
 public class Player extends GameObject {
     
-    private int x, y;
+    public int x, y;
     private PImage img;
+    public int fireDelay = 10;
+    public int fireTime;
+    public int laserSpeed = 3;
+    ArrayList<PlayerLaser> lasers = new ArrayList<PlayerLaser>();
 
     public Player() {
 
@@ -12,9 +16,9 @@ public class Player extends GameObject {
     }
 
     public void update() {
-
-
-
+        if (keyPressed){
+            
+        }
     }
 
     public void moveLeft() { 
@@ -31,7 +35,10 @@ public class Player extends GameObject {
 
     // TODO : Fire laser
     public void fire() {
-
+        if (fireTime <= millis()){
+            lasers.add(new PlayerLaser(x, y, laserSpeed, PI/2));
+            fireTime = millis() + 100*fireDelay;
+        }
     }
 
     public int getX() {

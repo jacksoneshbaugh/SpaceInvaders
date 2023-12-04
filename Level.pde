@@ -13,13 +13,7 @@ public class Level extends GameObject {
         player = new Player();
 
         // fill rows with aliens: bottom two rows GreenAlien, 2nd row BlueAlien, and top row PinkAlien
-        // Aliens need to be instantiated with their x and y coordinates, a movement speed, and a number of moves before a vertical movement should happen.
         // THE ONLY PARAMETERS THAT SHOULD BE DIFFERENT BETWEEN ALIENS ARE THEIR X AND Y COORDINATES.
-        // The first row of aliens should be 50 pixels below the top of the screen.
-        // The second row of aliens should be 100 pixels below the top of the screen.
-        // The third row of aliens should be 150 pixels below the top of the screen.
-        // The fourth row of aliens should be 200 pixels below the top of the screen.
-        // The aliens should be spaced 50 pixels apart from each other.
 
         aliens = new Alien[4][10];
         for (int i = 0; i < aliens.length; i++) {
@@ -50,6 +44,8 @@ public class Level extends GameObject {
         return lives;
     }
 
+    
+
 
     public void update() {
         if (isOver) {
@@ -64,11 +60,13 @@ public class Level extends GameObject {
         for (Alien[] alienArr : aliens) {
             for (Alien alien : alienArr) {
                 alien.update();
-                //Collision code (Broken currently)
+
+                // Collision detection
+
                 if (player.lasers.isEmpty() == false) {
                     for (PlayerLaser laser : player.lasers) {
-                        if (laser.x >= alien.x && laser.x <= alien.xWidth && laser.y >= alien.y && laser.y <= alien.yWidth && alien.getIsDead() == false) {
-                            alien.setIsDead(true);
+                        if (laser.x >= alien.x && laser.x <= alien.x + alien.xWidth && laser.y >= alien.y && laser.y <= alien.y + alien.yWidth && !alien.isDead()) {
+                            alien.setDead(true);
                         }
                     }
                 }
@@ -96,6 +94,7 @@ public class Level extends GameObject {
     */
 
     //While moving and fireing at the same time, you have to press the space bar again, you cant hold it. We need to rethink our rollover.
+    // Two separate listeners?
     public void onKeyPressed(char key) {
         switch(key) {
             case 'l':

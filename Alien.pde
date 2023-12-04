@@ -54,17 +54,17 @@ public class Alien extends GameObject {
     }
 
     public void render() {
-        if (isDead == false) {
+        if (!isDead) {
             image(img, x, y, xWidth, yWidth);
         }
     }
 
-    public boolean getIsDead() {
+    public boolean isDead() {
         return isDead;
     }
 
-    public void setIsDead(boolean arg) {
-        isDead = arg;
+    public void setDead(boolean dead) {
+        this.isDead = dead;
     }
 
 }

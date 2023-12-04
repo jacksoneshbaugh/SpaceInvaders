@@ -19,11 +19,11 @@ public class Level extends GameObject {
         for (int i = 0; i < aliens.length; i++) {
             for (int j = 0; j < aliens[i].length; j++) {
                 if (i >= 2) {
-                    aliens[i][j] = new GreenAlien(50 + j * 50, 50 + i * 50, 10, 10);
+                    aliens[i][j] = new GreenAlien(50 + j * 50, 50 + i * 50, 10, 20);
                 } else if (i == 1) {
-                    aliens[i][j] = new BlueAlien(50 + j * 50, 50 + i * 50, 10, 10);
+                    aliens[i][j] = new BlueAlien(50 + j * 50, 50 + i * 50, 10, 20);
                 } else {
-                    aliens[i][j] = new PinkAlien(50 + j * 50, 50 + i * 50, 10, 10);
+                    aliens[i][j] = new PinkAlien(50 + j * 50, 50 + i * 50, 10, 20);
                 }
             }
         }

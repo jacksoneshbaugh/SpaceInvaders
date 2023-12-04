@@ -1,7 +1,8 @@
 # To Do:
 - [ x ] Attend meeting
 - [ x ] Create basic Space Invaders level
-- [ ] Aliens Shooting Lasers
+- [ x ] Aliens Shooting Lasers
+- [ ] Lock moving and firing after game/level is over
 
 - [ ] File I/O
 

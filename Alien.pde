@@ -1,8 +1,8 @@
 public class Alien extends GameObject {
 
-    public int x, y;
+    public int x, y, laserSpeed;
     public int xWidth, yWidth;
-    private PImage img;
+    private PImage img, laser;
     private char movementDirection = 'R';
     private int movementSpeed = 1;
     private final int numMovesBeforeVerticalMovement;
@@ -11,12 +11,13 @@ public class Alien extends GameObject {
     private boolean isDead = false;
     
 
-    public Alien(int x, int y, int xWidth, int yWidth, PImage img, int movementSpeed, int numMovesBeforeVerticalMovement) {
+    public Alien(int x, int y, int xWidth, int yWidth, PImage img, PImage laser, int laserSpeed, int movementSpeed, int numMovesBeforeVerticalMovement) {
         this.x = x;
         this.y = y;
         this.xWidth = xWidth;
         this.yWidth = yWidth;
         this.img = img;
+        this.laser = laser;
         this.movementSpeed = movementSpeed;
         this.numMovesBeforeVerticalMovement = numMovesBeforeVerticalMovement;
         this.movementTracker = numMovesBeforeVerticalMovement;
@@ -52,6 +53,12 @@ public class Alien extends GameObject {
             frameCounter = 0;
         }
     }
+
+    // Shoot a laser from the alien's position
+    public AlienLaser shootLaser() {
+        return new AlienLaser(x + xWidth / 2, y + yWidth, 5, this.laser);
+    }
+
 
     public void render() {
         if (!isDead) {

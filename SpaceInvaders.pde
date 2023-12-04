@@ -4,8 +4,10 @@ Player player;
 void setup() {
     size(800, 600);
 
+    frameRate(60);
+
     player = new Player();
-    l = new Level(5000, player);
+    l = new Level(600, player, 4, 10);
     
 
 }

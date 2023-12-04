@@ -67,6 +67,7 @@ public class Level extends GameObject {
                     for (PlayerLaser laser : player.lasers) {
                         if (laser.x >= alien.x && laser.x <= alien.x + alien.xWidth && laser.y >= alien.y && laser.y <= alien.y + alien.yWidth && !alien.isDead()) {
                             alien.setDead(true);
+                            player.lasers.remove(laser);
                         }
                     }
                 }

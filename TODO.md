@@ -1,3 +1,10 @@
 # To Do:
 - [ x ] Attend meeting
-- [ ] Create basic Space Invaders level
+- [ x ] Create basic Space Invaders level
+
+- [ ] Modifiers:
+  - [ ] Fire Speed
+  - [ ] Multiple Lasers
+  - [ ] Movement Speed
+  - [ ] Laser Speed (How fast the lasers move)
+  - [ ] Extra Life

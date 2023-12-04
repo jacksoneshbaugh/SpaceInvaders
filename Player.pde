@@ -6,6 +6,7 @@ public class Player extends GameObject {
     public int fireTime;
     public int laserSpeed = 10;
     public boolean fireLocked = false;
+    private int lives = 3;
     public ArrayList<PlayerLaser> lasers = new ArrayList<PlayerLaser>();
 
     public Player() {
@@ -17,6 +18,18 @@ public class Player extends GameObject {
     }
 
     public void update() {
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public void loseLife() {
+        lives--;
+    }
+
+    public void gainLife() {
+        lives++;
     }
 
     public void moveLeft() { 

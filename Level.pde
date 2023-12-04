@@ -3,15 +3,13 @@ public class Level extends GameObject {
     private Player player;
     private Alien[][] aliens;
     private boolean isOver;
+    private boolean isWon;
     private int score;
-    private int lives;
-    private Player player;
+    private int fireDelay; // in milliseconds
 
-    public Level(int lives) {
-
-        this.lives = lives;
-
-        player = new Player();
+    public Level(int fireDelay, Player player) {
+        this.fireDelay = fireDelay;
+        this.player = player;
 
         // fill rows with aliens: bottom two rows GreenAlien, 2nd row BlueAlien, and top row PinkAlien
         // THE ONLY PARAMETERS THAT SHOULD BE DIFFERENT BETWEEN ALIENS ARE THEIR X AND Y COORDINATES.
@@ -29,20 +27,12 @@ public class Level extends GameObject {
             }
         }
 
-        
-
-
         isOver = false;
         score = 0;
-        lives = 3;
     }
 
     public int getScore() {
         return score;
-    }
-
-    public int getLives() {
-        return lives;
     }
 
     public void update() {
@@ -87,6 +77,31 @@ public class Level extends GameObject {
             }
         }
     }
+
+    // check if the level is over and if the player won.
+    // Player looses if any alien reaches the bottom of the screen
+    // Player wins if all aliens are dead
+    
+    public void checkStatus() {
+        boolean allDead = true;
+        for (Alien[] alienArr : aliens) {
+            for (Alien alien : alienArr) {
+                if (!alien.isDead()) {
+                    allDead = false;
+                }
+                if (alien.y >= 500) {
+                    isOver = true;
+                    isWon = false;
+                    return;
+                }
+            }
+        }
+        if (allDead) {
+            isOver = true;
+            isWon = true;
+        }
+    }
+    
 
     /**
     * key can be 'l', 'r' for left and right arrows respectively

@@ -1,9 +1,11 @@
 Level l;
+Player player;
 
 void setup() {
-
     size(800, 600);
-    l = new Level(3);
+
+    player = new Player();
+    l = new Level(5000, player);
     
 
 }
@@ -23,7 +25,7 @@ void draw() {
 
     // draw the player's lives at the top left
     textAlign(LEFT);
-    text("Lives: " + l.getLives(), 10, 20);
+    text("Lives: " + player.getLives(), 10, 20);
 
 
 }

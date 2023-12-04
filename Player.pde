@@ -2,9 +2,10 @@ public class Player extends GameObject {
     
     public int x, y;
     private PImage img;
-    public int fireDelay = 10;
+    public int fireDelay = 3;
     public int fireTime;
     public int laserSpeed = 10;
+    public boolean fireLocked = false;
     public ArrayList<PlayerLaser> lasers = new ArrayList<PlayerLaser>();
 
     public Player() {

@@ -1,6 +1,8 @@
 # To Do:
 - [ x ] Attend meeting
 - [ x ] Create basic Space Invaders level
+- [ ] Aliens Shooting Lasers
+
 
 - [ ] Modifiers:
   - [ ] Fire Speed

@@ -2,7 +2,7 @@ public class PlayerLaser extends Laser {
 
     private PImage img;
 
-    //Angle is in Radians 
+    // Angle is in Radians 
     public PlayerLaser(int x, int y, int speed, float angle) {
         this.angle = angle;
         this.speed = speed;

@@ -1,5 +1,5 @@
 public class GreenAlien extends Alien {
-    public GreenAlien(int x, int y, int movementSpeed, int numMovesBeforeVerticalMovement) {
-        super(x, y, 25, 25, loadImage("img/green_alien.png"), movementSpeed, numMovesBeforeVerticalMovement);
+    public GreenAlien(int x, int y, int movementSpeed, int numMovesBeforeVerticalMovement, int laserSpeed) {
+        super(x, y, 25, 25, loadImage("img/green_alien.png"), loadImage("img/green_laser.png"), laserSpeed, movementSpeed, numMovesBeforeVerticalMovement);
     }
 }

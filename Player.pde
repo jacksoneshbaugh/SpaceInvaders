@@ -1,6 +1,7 @@
 public class Player extends GameObject {
     
     public int x, y;
+    public int xWidth = 80, yWidth = 40;
     private PImage img;
     public int fireDelay = 3;
     public int fireTime;
@@ -57,7 +58,7 @@ public class Player extends GameObject {
     }
 
     public void render() {
-        image(img, x, y, 80, 40);
+        image(img, x, y, xWidth, yWidth);
 
     }
 

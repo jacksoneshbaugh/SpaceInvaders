@@ -5,6 +5,7 @@ public class Level extends GameObject {
     private boolean isOver;
     private int score;
     private int lives;
+    private Player player;
 
     public Level(int lives) {
 
@@ -43,9 +44,6 @@ public class Level extends GameObject {
     public int getLives() {
         return lives;
     }
-
-    
-
 
     public void update() {
         if (isOver) {

@@ -122,7 +122,6 @@ public class Level extends GameObject {
         for (int i = alienArrayLength - 1; i >= 0; i--) {
             if (!aliens[i][randomColumn].isDead()) {
                 alienLasers.add(aliens[i][randomColumn].shootLaser());
-                println("Alien i = " + i + " Alien j = " + randomColumn + " shot a laser.");
                 break;
             }
         }

@@ -3,6 +3,7 @@
 - [ x ] Create basic Space Invaders level
 - [ ] Aliens Shooting Lasers
 
+- [ ] File I/O
 
 - [ ] Modifiers:
   - [ ] Fire Speed
@@ -10,3 +11,8 @@
   - [ ] Movement Speed
   - [ ] Laser Speed (How fast the lasers move)
   - [ ] Extra Life
+
+
+# Other To-Do:
+
+- [ ] Promotional Material

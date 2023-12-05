@@ -48,6 +48,7 @@ public class Level extends GameObject {
 
 
     public void update() {
+        onInput();
         if (isOver) {
             return;
         }
@@ -97,6 +98,7 @@ public class Level extends GameObject {
 
     //While moving and fireing at the same time, you have to press the space bar again, you cant hold it. We need to rethink our rollover.
     // Two separate listeners?
+/*
     public void onKeyPressed(char key) {
         switch(key) {
             case 'l':
@@ -110,5 +112,18 @@ public class Level extends GameObject {
                 break;
         }
     }
+*/
 
+    public void onInput(char key){
+        switch(key) {
+            case 'l':
+                player.moveLeft();
+                break;
+            case 'r':
+                player.moveRight();
+                break;
+            case ' ':
+                player.fire();
+                break;
+    }
 }

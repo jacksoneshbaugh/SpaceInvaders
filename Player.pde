@@ -1,11 +1,13 @@
 public class Player extends GameObject {
     
     public int x, y;
+    public int xWidth = 80, yWidth = 40;
     private PImage img;
     public int fireDelay = 3;
     public int fireTime;
     public int laserSpeed = 10;
     public boolean fireLocked = false;
+    private int lives = 3;
     public ArrayList<PlayerLaser> lasers = new ArrayList<PlayerLaser>();
 
     public Player() {
@@ -17,6 +19,18 @@ public class Player extends GameObject {
     }
 
     public void update() {
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public void loseLife() {
+        lives--;
+    }
+
+    public void gainLife() {
+        lives++;
     }
 
     public void moveLeft() { 
@@ -44,7 +58,7 @@ public class Player extends GameObject {
     }
 
     public void render() {
-        image(img, x, y, 80, 40);
+        image(img, x, y, xWidth, yWidth);
 
     }
 

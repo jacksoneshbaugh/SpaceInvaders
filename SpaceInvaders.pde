@@ -18,6 +18,7 @@ void draw() {
     // update & render the active level
     l.update();
     l.render();
+    l.checkStatus();
 
     // draw the player's score at the top right
     fill(255);
@@ -32,22 +33,28 @@ void draw() {
 
 }
 
-void keyPressed() {
-    // pass the key press to the active level
-    switch(keyCode) {
-        case LEFT:
-            l.onKeyPressed('l');
-            break;
-        case RIGHT:
-            l.onKeyPressed('r');
-            break;
-        default:
-            switch(key) {
-                case ' ':
-                    l.onKeyPressed(' ');
-                    break;
-                default:
-                    break;
-            }
+//Keeps track of multiple keys being pressed. Actual movement and firing in player code.
+
+void keyPressed(){
+    if(key == ' '){
+        l.player.isFireing = true;
     }
+    if(keyCode == LEFT ){
+        l.player.movingLeft = true;
+    }
+    if(keyCode == RIGHT ){
+        l.player.movingRight = true;
+    }  
+}
+
+void keyReleased() {
+    if(key == ' '){
+        l.player.isFireing = false;
+    }
+    if(keyCode == LEFT ){
+        l.player.movingLeft = false;
+    }
+    if(keyCode == RIGHT ){
+        l.player.movingRight = false;
+    }  
 }

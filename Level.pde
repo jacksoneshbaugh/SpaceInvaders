@@ -13,12 +13,12 @@ public class Level extends GameObject {
         this.player = player;
         this.alienArrayLength = alienArrayLength;
         this.alienArrayWidth = alienArrayWidth;
-        
+
         this.alienLasers = new ArrayList<AlienLaser>();
-        
+
         // fill rows with aliens: bottom two rows GreenAlien, 2nd row BlueAlien, and top row PinkAlien
         // THE ONLY PARAMETERS THAT SHOULD BE DIFFERENT BETWEEN ALIENS ARE THEIR X AND Y COORDINATES.
-        
+
         aliens = new Alien[alienArrayLength][alienArrayWidth];
         for (int i = 0; i < aliens.length; i++) {
             for (int j = 0; j < aliens[i].length; j++) {
@@ -31,14 +31,14 @@ public class Level extends GameObject {
                 }
             }
         }
-        
+
         this.isOver = false;
     }
-    
+
     public int getScore() {
         return player.score;
     }
-    
+
     public void update() {
         checkStatus();
 
@@ -55,12 +55,12 @@ public class Level extends GameObject {
         for (Alien[] alienArr : aliens) {
             for (Alien alien : alienArr) {
                 alien.update();
-                
+
                 // Collision detection
                 
                 if (player.lasers.isEmpty() == false) {
                     for (PlayerLaser laser : player.lasers) {
-                        if ((laser.x >= alien.x && laser.x <= alien.x + alien.xWidth) && 
+                        if ((laser.x >= alien.x && laser.x <= alien.x + alien.xWidth) &&
                             (laser.y >= alien.y && laser.y <= alien.y + alien.yWidth) &&
                             !alien.isDead()) {
 
@@ -73,18 +73,18 @@ public class Level extends GameObject {
                 }
             }
         }
-        
+
         alienFire();
-        
+
         for (AlienLaser laser : alienLasers) {
             laser.update();
-            
+
             // Collision detection
-            if ((laser.x >= player.x && laser.x <= player.x + player.xWidth) && 
+            if ((laser.x >= player.x && laser.x <= player.x + player.xWidth) &&
                 (laser.y >= player.y && laser.y <= player.y + player.yWidth)) {
                 player.loseLife();
                 alienLasers.remove(laser);
-                
+
                 if (player.getLives() == 0) {
                     isOver = true;
                     isWon = false;
@@ -92,7 +92,7 @@ public class Level extends GameObject {
                 break;
             }
         }
-        
+
     }
     
     public void render() {
@@ -108,23 +108,23 @@ public class Level extends GameObject {
                 alien.render();
             }
         }
-        
+
         for (AlienLaser laser : alienLasers) {
             laser.render();
         }
     }
-    
+
     // Alien Laser Shooting Logic
     // Choose a random column and shoot a laser from the bottom alien in that column.
-    
+
     public void alienFire() {
-        
+
         if (fireDelayCounter < fireDelay) {
             fireDelayCounter++;
             return;
         }
-        
-        
+
+
 
         // Ensure that all aliens in the column are dead
         boolean allDead = true;
@@ -145,24 +145,24 @@ public class Level extends GameObject {
                 break;
             }
         }
-        
+
         fireDelayCounter = 0;
     }
-    
-    
+
+
     public boolean isOver() {
         return isOver;
     }
-    
+
     public boolean isWon() {
         return isWon;
     }
-    
-    
+
+
     // check if the level is over and if the player won.
     // Player looses if any alien reaches the bottom of the screen
     // Player wins if all aliens are dead
-    
+
     public void checkStatus() {
         boolean allDead = true;
         for (Alien[] alienArr : aliens) {
@@ -185,12 +185,12 @@ public class Level extends GameObject {
         }
     }
     
-    
+
     /**
     * key can be 'l', 'r' for left and right arrows respectively
     * or ' ' for spacebar
     */
-    
+
     //While moving and fireing at the same time, you have to press the space bar again, you cant hold it. We need to rethink our rollover.
     // Two separate listeners?
     /*
@@ -208,7 +208,7 @@ public class Level extends GameObject {
     }
     }
     */
-    
+
     public void onInput(char key) {
         switch(key) {
             case 'l':

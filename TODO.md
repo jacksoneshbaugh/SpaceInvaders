@@ -17,4 +17,4 @@
 
 
 # Other To-Do:
-- [ ] Promotional Material
+- [ x ] Promotional Material

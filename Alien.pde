@@ -9,15 +9,17 @@ public class Alien extends GameObject {
     private int movementTracker;
     private int frameCounter = 0;
     private boolean isDead = false;
+    private int points;
     
 
-    public Alien(int x, int y, int xWidth, int yWidth, PImage img, PImage laser, int laserSpeed, int movementSpeed, int numMovesBeforeVerticalMovement) {
+    public Alien(int x, int y, int xWidth, int yWidth, PImage img, PImage laser, int points, int laserSpeed, int movementSpeed, int numMovesBeforeVerticalMovement) {
         this.x = x;
         this.y = y;
         this.xWidth = xWidth;
         this.yWidth = yWidth;
         this.img = img;
         this.laser = laser;
+        this.points = points;
         this.movementSpeed = movementSpeed;
         this.numMovesBeforeVerticalMovement = numMovesBeforeVerticalMovement;
         this.movementTracker = numMovesBeforeVerticalMovement;
@@ -72,6 +74,10 @@ public class Alien extends GameObject {
 
     public void setDead(boolean dead) {
         this.isDead = dead;
+    }
+
+    public int getPoints() {
+        return points;
     }
 
 }

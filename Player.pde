@@ -1,6 +1,7 @@
 public class Player extends GameObject {
     
     public int x, y;
+    public int score = 0;
     public int xWidth = 80, yWidth = 40;
     private PImage img;
     public int fireDelay = 3;

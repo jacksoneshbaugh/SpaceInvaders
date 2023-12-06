@@ -14,8 +14,8 @@ public abstract class Laser extends GameObject {
     }
 
     public void update() {
-        x += speed*cos(angle);
-        y -= speed*sin(angle);
+        x += speed * cos(angle);
+        y -= speed * sin(angle);
     }
 
     public void render() {

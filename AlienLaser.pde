@@ -11,8 +11,8 @@ public class AlienLaser extends Laser {
     // Override update method because the laser needs to move down, not up.
     @Override
     public void update() {
-        x += speed*cos(angle);
-        y += speed*sin(angle); // Add to y because the laser needs to move down.
+        x += speed * cos(angle);
+        y += speed * sin(angle); // Add to y because the laser needs to move down.
     }
 
     // Override render method because the laser has different scaling variables.

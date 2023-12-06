@@ -6,11 +6,11 @@
 
 - [ ] File I/O
 
-- [ ] Modifiers:
+- [ x ] Modifiers:
   - [ ] Fire Speed
   - [ ] Multiple Lasers
-  - [ ] Movement Speed
-  - [ ] Laser Speed (How fast the lasers move)
+  - [ x ] Movement Speed
+  - [ x ] Laser Speed (How fast the lasers move)
   - [ ] Extra Life
 
 

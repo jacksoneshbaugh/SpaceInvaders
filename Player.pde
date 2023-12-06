@@ -6,10 +6,15 @@ public class Player extends GameObject {
     private PImage img;
     public int fireDelay = 3;
     public int fireTime;
-    public int laserSpeed = 10;
+    public float laserSpeed = 10;
     public boolean fireLocked = false;
+    public boolean isFireing = false;
+    public boolean movingLeft = false;
+    public boolean movingRight = false;
+    public int playerSpeed = 5;
     private int lives = 3;
     public ArrayList<PlayerLaser> lasers = new ArrayList<PlayerLaser>();
+    public ArrayList<Modifier> modifiers = new ArrayList<Modifier>();
 
     public Player() {
 
@@ -20,6 +25,15 @@ public class Player extends GameObject {
     }
 
     public void update() {
+        if(movingLeft){
+            moveLeft();
+        }
+        if(movingRight){
+            moveRight();
+        }
+        if(isFireing){
+            fire();
+        }
     }
 
     public int getLives() {
@@ -36,13 +50,13 @@ public class Player extends GameObject {
 
     public void moveLeft() { 
         if (x > 0) {
-            x -= 10;
+            x -= playerSpeed;
         }
     }
 
     public void moveRight() {
         if (x < width - 80) {
-            x += 10;
+            x += playerSpeed;
         }
     }
 

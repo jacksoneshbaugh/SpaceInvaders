@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 Level l, l2, l3, activeLevel;
 int levelNum = -1;
 Player player;
-SoundFile file;
+SoundFile sound;
 File scoresFile;
 
 void setup() {
@@ -21,14 +21,20 @@ void setup() {
     
     activeLevel = l;
     
-    scoresFile = new File("scores.txt");
+    scoresFile = new File(System.getProperty("user.home") + "/SpaceInvadersScores.txt");
     
-    file = new SoundFile(this, "sounds/space_invaders.mp3");
-    file.loop();
+    try {
+        scoresFile.createNewFile();
+    } catch(IOException e) {
+        e.printStackTrace();
+    }
+    
+    sound = new SoundFile(this, "sounds/space_invaders.mp3");
+    sound.loop();
 }
 
 void stopSound() {
-    file.stop();
+    sound.stop();
 }
 
 void draw() {
@@ -59,20 +65,7 @@ void draw() {
             e.printStackTrace();
         }
         
-        // Sort scores from highest to lowest
-        HashMap<String, Integer> sortedScores = new HashMap<String, Integer>();
-        for (String name : scores.keySet()) {
-            int score = scores.get(name);
-            
-            for (String sortedName : sortedScores.keySet()) {
-                int sortedScore = sortedScores.get(sortedName);
-                
-                if (score > sortedScore) {
-                    sortedScores.put(name, score);
-                    break;
-                }
-            }
-        }
+        // TODO : Sort the scores from highest to lowest
         
         
         // Display the scores
@@ -82,10 +75,10 @@ void draw() {
         text("Leaderboard", width / 2, 50);
         
         textSize(20);
-        textAlign(LEFT);
+        textAlign(CENTER);
         int y = 100;
-        for (String name : sortedScores.keySet()) {
-            text(name + ": " + sortedScores.get(name), 10, y);
+        for (String name : scores.keySet()) {
+            text(name + ": " + scores.get(name), width / 2, y);
             y += 20;
         }
         
@@ -113,17 +106,21 @@ void draw() {
         
         // draw the player's lives at the top left
         textAlign(LEFT);
-        text("Lives: " + player.getLives(), 10, 20);
+        text("Lives:" + player.getLives(), 10, 20);
         
         // Win/Lose
         
+        
+        
         if (activeLevel.isOver()) { 
+            println("over");
             if (activeLevel.isWon()) {
+                println("won");
                 // check if there's another level
                 if (levelNum == 1) {
                     activeLevel = l2;
                     levelNum++;
-                } else if (levelNum == 2) {
+                    } else if (levelNum == 2) {
                     activeLevel = l3;
                     levelNum++;
                 } else {
@@ -140,49 +137,71 @@ void draw() {
                         textSize(50);
                         textAlign(CENTER);
                         text("You Lose!", width / 2, height / 2);
-                    }
+                        }
                     // save the score
                     saveScore(activeLevel.getScore());
+                    // show the leaderboard
+                    levelNum = -2;
+                    }
+                } else {
+                    // loss
+                    fill(255);
+                    textSize(50);
+                    textAlign(CENTER);
+                    text("You Lose!", width / 2, height / 2);
+                    // save the score
+                    saveScore(activeLevel.getScore());
+                    // show the leaderboard
+                    levelNum = -2;
                 }
+            
+            
             }
-            
-            
         }
     }
-}
 
-//Keeps track of multiple keys being pressed. Actual movement and firing in player code.
+//Keeps track ofmultiple keys being pressed.Actual movement and firing in player code.
 
-void keyPressed(){
-    if(key == ' '){
-        l.player.isFireing = true;
+void keyPressed() {
+    if (key == ' ') {
+        activeLevel.player.isFireing = true;
+        }
+    if (keyCode == LEFT) {
+        activeLevel.player.movingLeft = true;
+        }
+    if (keyCode == RIGHT) {
+        activeLevel.player.movingRight = true;
+        }
+    
+    if (keyCode == ENTER) {
+        if (levelNum <= 0) {
+            levelNum++;
+            }
+        } else if (key == 'l') {
+        // show the leaderboard
+        levelNum = -2;
+        }
     }
-    if(keyCode == LEFT ){
-        l.player.movingLeft = true;
-    }
-    if(keyCode == RIGHT ){
-        l.player.movingRight = true;
-    }  
-}
 
 void keyReleased() {
-    if(key == ' '){
-        l.player.isFireing = false;
+    if (key == ' ') {
+        activeLevel.player.isFireing = false;
+        }
+    if (keyCode == LEFT) {
+        activeLevel.player.movingLeft = false;
+        }
+    if (keyCode == RIGHT) {
+        activeLevel.player.movingRight = false;
+        }  
     }
-    if(keyCode == LEFT ){
-        l.player.movingLeft = false;
-    }
-    if(keyCode == RIGHT ){
-        l.player.movingRight = false;
-    }  
-}
 
 // Saving Scores to a file.
 // Format : name, score
 void saveScore(int score) {
     try {
         // Prompt the user for their name
-        String name = JOptionPane.showInputDialog("Enter your name: ");
+        String name = JOptionPane.showInputDialog("Enter your name.");
+        println("name");
         
         FileWriter writer = new FileWriter(scoresFile);
         writer.write(name + "," + score);
@@ -191,4 +210,4 @@ void saveScore(int score) {
         e.printStackTrace();
         }
     
-}
+    }

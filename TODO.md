@@ -4,7 +4,9 @@
 - [ x ] Aliens Shooting Lasers
 - [ ] Lock moving and firing after game/level is over
 
-- [ ] File I/O
+- [ x ] File I/O
+
+- [ ] Change alien logic so the whole block can calculate how many moves it needs to make on its own
 
 - [ x ] Modifiers:
   - [ ] Fire Speed

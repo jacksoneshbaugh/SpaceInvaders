@@ -11,34 +11,30 @@ File scoresFile;
 
 void setup() {
     size(800, 600);
-
+    
     frameRate(60);
-
+    
     player = new Player();
-    l = new Level(600, player, 4, 10, 10, 20, 3);
-    l2 = new Level(600, player, 5, 12, 15, 18, 5);
-    l3 = new Level(600, player, 6, 14, 20, 16, 7);
-
+    l = new Level(180, player, 4, 10, 10, 20, 3);
+    l2 = new Level(120, player, 5, 12, 15, 18, 5);
+    l3 = new Level(60, player, 6, 14, 20, 16, 7);
+    
     activeLevel = l;
     
     scoresFile = new File(System.getProperty("user.home") + "/SpaceInvadersScores.txt");
-
+    
     try {
         scoresFile.createNewFile();
     } catch(IOException e) {
         e.printStackTrace();
     }
-
+    
     sound = new SoundFile(this, "sounds/space_invaders.mp3");
     sound.loop();
 }
 
-void stopSound() {
-    sound.stop();
-}
-
 void draw() {
-
+    
     if (levelNum == -1) {
         // Start Screen
         image(loadImage("img/title.png"), 0, 0, width, height);
@@ -47,9 +43,9 @@ void draw() {
         // Leaderboard
         // Read the scores from the file
         // Display top 10 scores in a table from highest to lowest
-
+        
         HashMap<String, Integer> scores = new HashMap<String, Integer>();
-
+        
         try {
             BufferedReader reader = new BufferedReader(new FileReader(scoresFile));
             String line = reader.readLine();
@@ -73,7 +69,7 @@ void draw() {
         textSize(50);
         textAlign(CENTER);
         text("Leaderboard", width / 2, 50);
-
+        
         textSize(20);
         textAlign(CENTER);
         int y = 100;
@@ -81,7 +77,7 @@ void draw() {
             text(name + ": " + scores.get(name), width / 2, y);
             y += 20;
         }
-
+        
         // display a key to return to the start screen
         textSize(20);
         textAlign(CENTER);
@@ -91,31 +87,29 @@ void draw() {
         image(loadImage("img/instructions.png"), 0, 0, width, height);
     } else {
         // Game
-
+        
         background(0);
-
+        
         // update & render the active level
         activeLevel.update();
         activeLevel.render();
-
+        
         // draw the player's score at the top right
         fill(255);
         textSize(20);
         textAlign(RIGHT);
         text(activeLevel.getScore(), width - 10, 20);
-
+        
         // draw the player's lives at the top left
         textAlign(LEFT);
         text("Lives:" + player.getLives(), 10, 20);
         
         // Win/Lose
         
-
-
+        
+        
         if (activeLevel.isOver()) {
-            println("over");
             if (activeLevel.isWon()) {
-                println("won");
                 // check if there's another level
                 if (levelNum == 1) {
                     activeLevel = l2;
@@ -154,8 +148,8 @@ void draw() {
                     // show the leaderboard
                     levelNum = -2;
                 }
-
-
+            
+            
             }
         }
     }
@@ -172,7 +166,7 @@ void keyPressed() {
     if (keyCode == RIGHT) {
         activeLevel.player.movingRight = true;
         }
-
+    
     if (keyCode == ENTER) {
         if (levelNum <= 0) {
             levelNum++;
@@ -192,7 +186,7 @@ void keyReleased() {
         }
     if (keyCode == RIGHT) {
         activeLevel.player.movingRight = false;
-        }
+        }  
     }
 
 // Saving Scores to a file.

@@ -15,9 +15,9 @@ void setup() {
     frameRate(60);
     
     player = new Player();
-    l = new Level(600, player, 4, 10, 10, 20, 3);
-    l2 = new Level(600, player, 5, 12, 15, 18, 5);
-    l3 = new Level(600, player, 6, 14, 20, 16, 7);
+    l = new Level(180, player, 4, 10, 10, 20, 3);
+    l2 = new Level(120, player, 5, 12, 15, 18, 5);
+    l3 = new Level(60, player, 6, 14, 20, 16, 7);
     
     activeLevel = l;
     
@@ -31,10 +31,6 @@ void setup() {
     
     sound = new SoundFile(this, "sounds/space_invaders.mp3");
     sound.loop();
-}
-
-void stopSound() {
-    sound.stop();
 }
 
 void draw() {
@@ -113,9 +109,7 @@ void draw() {
         
         
         if (activeLevel.isOver()) { 
-            println("over");
             if (activeLevel.isWon()) {
-                println("won");
                 // check if there's another level
                 if (levelNum == 1) {
                     activeLevel = l2;

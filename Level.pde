@@ -173,7 +173,6 @@ public class Level extends GameObject {
                 if (alien.y >= 500) {
                     isOver = true;
                     isWon = false;
-                    stopSound();
                     return;
                 }
             }
@@ -181,7 +180,6 @@ public class Level extends GameObject {
         if (allDead) {
             isOver = true;
             isWon = true;
-            stopSound();
         }
     }
     

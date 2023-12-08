@@ -143,7 +143,7 @@ public class Level extends GameObject {
         
         
 
-        // Ensure that all aliens in the column are dead
+        // Ensure that all aliens in the column aren't dead
         boolean allDead = true;
         int randomColumn = 0;
         while(allDead) {
@@ -187,7 +187,15 @@ public class Level extends GameObject {
                 if (!alien.isDead()) {
                     allDead = false;
                 }
-                if (alien.y >= 500) {
+                // If an alien reaches the bottom of the screen, end the game.
+                if (alien.y >= height) {
+                    isOver = true;
+                    isWon = false;
+                    return;
+                }
+                // If an alien touches the player, end the game.
+                if ((alien.x >= player.x && alien.x <= player.x + player.xWidth) && 
+                    (alien.y >= player.y && alien.y <= player.y + player.yWidth)) {
                     isOver = true;
                     isWon = false;
                     return;

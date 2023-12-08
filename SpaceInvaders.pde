@@ -193,7 +193,6 @@ void saveScore(int score) {
     try {
         // Prompt the user for their name
         String name = JOptionPane.showInputDialog("Enter your name.");
-        println("name");
         
         FileWriter writer = new FileWriter(scoresFile);
         writer.write(name + "," + score);

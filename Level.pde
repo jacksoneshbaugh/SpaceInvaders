@@ -21,27 +21,27 @@ public class Level extends GameObject {
         
         // To determine the number of moves before the aliens vertically move:
         // We have that 50 + (alienArrayWidth * 50) >= width
-
+        
         // Determine the distance (pixels) between the rightmost alien and the edge of the screen
         int distance = width - (50 + (alienArrayWidth * 50));
         // Divide by alienSpeed to get the number of moves.
         // Note: this is an integer division, so we will round down (which is intended behavior).
         this.numMovesBeforeVerticalMovement = distance / alienSpeed;
-
-
+        
+        
         // Fill rows with aliens: bottom two rows GreenAlien, 2nd row BlueAlien, and top row PinkAlien
         // THE ONLY PARAMETERS THAT SHOULD BE DIFFERENT BETWEEN ALIENS ARE THEIR X AND Y COORDINATES.
-
+        
         aliens = new Alien[alienArrayLength][alienArrayWidth];
         fillAlienArray();
-
+        
         this.isOver = false;
     }
     
     public int getScore() {
         return player.score;
     }
-
+    
     public void fillAlienArray() {
         for (int i = 0; i < aliens.length; i++) {
             for (int j = 0; j < aliens[i].length; j++) {
@@ -58,11 +58,11 @@ public class Level extends GameObject {
     
     public void update() {
         checkStatus();
-
+        
         if (isOver) {
             return;
         }
-
+        
         player.update();
         if (player.lasers.isEmpty() == false) {
             for (PlayerLaser laser : player.lasers) {
@@ -78,11 +78,15 @@ public class Level extends GameObject {
                 if (player.lasers.isEmpty() == false) {
                     for (PlayerLaser laser : player.lasers) {
                         if ((laser.x >= alien.x && laser.x <= alien.x + alien.xWidth) && 
-                            (laser.y >= alien.y && laser.y <= alien.y + alien.yWidth) &&
+                           (laser.y >= alien.y && laser.y <= alien.y + alien.yWidth) && 
                             !alien.isDead()) {
-
-                            player.score += alien.getPoints();
+                            
                             alien.looseLife();
+                            
+                            if (alien.isDead()) {
+                                player.score += alien.getPoints();
+                            }
+                            
                             player.lasers.remove(laser);
                             break;
                         }
@@ -98,7 +102,7 @@ public class Level extends GameObject {
             
             // Collision detection
             if ((laser.x >= player.x && laser.x <= player.x + player.xWidth) && 
-                (laser.y >= player.y && laser.y <= player.y + player.yWidth)) {
+               (laser.y >= player.y && laser.y <= player.y + player.yWidth)) {
                 player.loseLife();
                 alienLasers.remove(laser);
                 
@@ -142,7 +146,7 @@ public class Level extends GameObject {
         }
         
         
-
+        
         // Ensure that all aliens in the column aren't dead
         boolean allDead = true;
         int randomColumn = 0;
@@ -155,7 +159,7 @@ public class Level extends GameObject {
                 }
             }
         }
-
+        
         for (int i = alienArrayLength - 1; i >= 0; i--) {
             if (!aliens[i][randomColumn].isDead()) {
                 alienLasers.add(aliens[i][randomColumn].shootLaser());
@@ -195,7 +199,7 @@ public class Level extends GameObject {
                 }
                 // If an alien touches the player, end the game.
                 if ((alien.x >= player.x && alien.x <= player.x + player.xWidth) && 
-                    (alien.y >= player.y && alien.y <= player.y + player.yWidth)) {
+                   (alien.y >= player.y && alien.y <= player.y + player.yWidth)) {
                     isOver = true;
                     isWon = false;
                     return;

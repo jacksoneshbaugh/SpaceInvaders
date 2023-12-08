@@ -10,9 +10,10 @@ public class Alien extends GameObject {
     private int frameCounter = 0;
     private boolean isDead = false;
     private int points;
+    private int lives;
     
 
-    public Alien(int x, int y, int xWidth, int yWidth, PImage img, PImage laser, int points, int laserSpeed, int movementSpeed, int numMovesBeforeVerticalMovement) {
+    public Alien(int x, int y, int xWidth, int yWidth, PImage img, PImage laser, int points, int laserSpeed, int movementSpeed, int numMovesBeforeVerticalMovement, int lives) {
         this.x = x;
         this.y = y;
         this.xWidth = xWidth;
@@ -23,6 +24,8 @@ public class Alien extends GameObject {
         this.movementSpeed = movementSpeed;
         this.numMovesBeforeVerticalMovement = numMovesBeforeVerticalMovement;
         this.movementTracker = numMovesBeforeVerticalMovement;
+        this.laserSpeed = laserSpeed;
+        this.lives = lives;
     }
 
     // Algorithm for moving the alien:
@@ -65,6 +68,13 @@ public class Alien extends GameObject {
     public void render() {
         if (!isDead) {
             image(img, x, y, xWidth, yWidth);
+        }
+    }
+
+    public void looseLife() {
+        lives--;
+        if(lives == 0) {
+            setDead(true);
         }
     }
 

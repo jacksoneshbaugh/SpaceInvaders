@@ -82,7 +82,7 @@ public class Level extends GameObject {
                             !alien.isDead()) {
 
                             player.score += alien.getPoints();
-                            alien.setDead(true);
+                            alien.looseLife();
                             player.lasers.remove(laser);
                             break;
                         }

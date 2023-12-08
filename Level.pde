@@ -207,42 +207,4 @@ public class Level extends GameObject {
             isWon = true;
         }
     }
-    
-    
-    /**
-    * key can be 'l', 'r' for left and right arrows respectively
-    * or ' ' for spacebar
-    */
-    
-    //While moving and fireing at the same time, you have to press the space bar again, you cant hold it. We need to rethink our rollover.
-    // Two separate listeners?
-    /*
-    public void onKeyPressed(char key) {
-    switch(key) {
-    case 'l':
-    player.moveLeft();
-    break;
-    case 'r':
-    player.moveRight();
-    break;
-    case ' ':
-    player.fire();
-    break;
-    }
-    }
-    */
-    
-    public void onInput(char key) {
-        switch(key) {
-            case 'l':
-                player.moveLeft();
-                break;
-            case 'r':
-                player.moveRight();
-                break;
-            case ' ':
-                player.fire();
-                break;
-        }
-    }
 }

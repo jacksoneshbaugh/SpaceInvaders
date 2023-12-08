@@ -61,7 +61,7 @@ public class Alien extends GameObject {
 
     // Shoot a laser from the alien's position
     public AlienLaser shootLaser() {
-        return new AlienLaser(x + xWidth / 2, y + yWidth, 5, this.laser);
+        return new AlienLaser(x + xWidth / 2, y + yWidth, this.laserSpeed, this.laser);
     }
 
 

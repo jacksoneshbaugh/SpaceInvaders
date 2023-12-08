@@ -1,25 +1,48 @@
 public class Level extends GameObject {
     
     private Player player;
-    private Alien[][] aliens;
+    protected Alien[][] aliens;
     private ArrayList<AlienLaser> alienLasers;
-    private int alienArrayLength, alienArrayWidth;
+    protected int alienArrayLength, alienArrayWidth;
+    protected int alienSpeed, numMovesBeforeVerticalMovement, alienLaserSpeed;
     private boolean isOver;
     private boolean isWon;
     private int fireDelay, fireDelayCounter = 0; // in frames; 60 frames = 1 second
     //                                             i-component           j-component
-    public Level(int fireDelay, Player player, int alienArrayLength, int alienArrayWidth, int alienSpeed, int numMovesBeforeVerticalMovement, int alienLaserSpeed) {
+    public Level(int fireDelay, Player player, int alienArrayLength, int alienArrayWidth, int alienSpeed, int alienLaserSpeed) {
         this.fireDelay = fireDelay;
         this.player = player;
         this.alienArrayLength = alienArrayLength;
         this.alienArrayWidth = alienArrayWidth;
+        this.alienSpeed = alienSpeed;
+        this.alienLaserSpeed = alienLaserSpeed;
         
         this.alienLasers = new ArrayList<AlienLaser>();
         
-        // fill rows with aliens: bottom two rows GreenAlien, 2nd row BlueAlien, and top row PinkAlien
+        // To determine the number of moves before the aliens vertically move:
+        // We have that 50 + (alienArrayWidth * 50) >= width
+
+        // Determine the distance (pixels) between the rightmost alien and the edge of the screen
+        int distance = width - (50 + (alienArrayWidth * 50));
+        // Divide by alienSpeed to get the number of moves.
+        // Note: this is an integer division, so we will round down (which is intended behavior).
+        this.numMovesBeforeVerticalMovement = distance / alienSpeed;
+
+
+        // Fill rows with aliens: bottom two rows GreenAlien, 2nd row BlueAlien, and top row PinkAlien
         // THE ONLY PARAMETERS THAT SHOULD BE DIFFERENT BETWEEN ALIENS ARE THEIR X AND Y COORDINATES.
-        
+
         aliens = new Alien[alienArrayLength][alienArrayWidth];
+        fillAlienArray();
+
+        this.isOver = false;
+    }
+    
+    public int getScore() {
+        return player.score;
+    }
+
+    public void fillAlienArray() {
         for (int i = 0; i < aliens.length; i++) {
             for (int j = 0; j < aliens[i].length; j++) {
                 if (i >= 2) {
@@ -31,12 +54,6 @@ public class Level extends GameObject {
                 }
             }
         }
-        
-        this.isOver = false;
-    }
-    
-    public int getScore() {
-        return player.score;
     }
     
     public void update() {

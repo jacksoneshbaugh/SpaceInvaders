@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 
-Level l, l2, l3, activeLevel;
+Level level1, level2, level3, activeLevel;
 int levelNum = -1;
 Player player;
 SoundFile sound;
@@ -15,11 +15,11 @@ void setup() {
     frameRate(60);
     
     player = new Player();
-    l = new Level(180, player, 4, 10, 10, 20, 3);
-    l2 = new Level(120, player, 5, 12, 15, 18, 5);
-    l3 = new Level(60, player, 6, 14, 20, 16, 7);
+    level1 = new Level1(player);
+    level2 = new Level2(player);
+    level3 = new Level3(player);
     
-    activeLevel = l;
+    activeLevel = level1;
     
     scoresFile = new File(System.getProperty("user.home") + "/SpaceInvadersScores.txt");
     
@@ -103,19 +103,17 @@ void draw() {
         // draw the player's lives at the top left
         textAlign(LEFT);
         text("Lives:" + player.getLives(), 10, 20);
-        
+    
         // Win/Lose
-        
-        
         
         if (activeLevel.isOver()) { 
             if (activeLevel.isWon()) {
                 // check if there's another level
                 if (levelNum == 1) {
-                    activeLevel = l2;
+                    activeLevel = level2;
                     levelNum++;
                     } else if (levelNum == 2) {
-                    activeLevel = l3;
+                    activeLevel = level3;
                     levelNum++;
                 } else {
                     // check win/loss
@@ -154,7 +152,7 @@ void draw() {
         }
     }
 
-//Keeps track ofmultiple keys being pressed.Actual movement and firing in player code.
+// Keeps track of multiple keys being pressed. Actual movement and firing in player code.
 
 void keyPressed() {
     if (key == ' ') {
@@ -190,7 +188,7 @@ void keyReleased() {
     }
 
 // Saving Scores to a file.
-// Format : name, score
+// Format : name,score
 void saveScore(int score) {
     try {
         // Prompt the user for their name

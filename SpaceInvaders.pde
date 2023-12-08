@@ -106,8 +106,6 @@ void draw() {
         
         // Win/Lose
         
-        
-        
         if (activeLevel.isOver()) {
             if (activeLevel.isWon()) {
                 // check if there's another level

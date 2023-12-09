@@ -14,7 +14,6 @@ public class Player extends GameObject {
     public int playerSpeed = 5;
     private int lives = 3;
     public ArrayList<PlayerLaser> lasers = new ArrayList<PlayerLaser>();
-    public ArrayList<Modifier> modifiers = new ArrayList<Modifier>();
 
     public Player() {
 
